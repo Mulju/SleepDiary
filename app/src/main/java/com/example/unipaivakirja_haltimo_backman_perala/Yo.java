@@ -12,4 +12,20 @@ public class Yo {
         this.nahdytUnet = nahdytUnet;
         this.ennenNukkumaan = ennenNukkumaan;
     }
+
+    public Paivamaara getPaivamaara() {
+        return paivamaara;
+    }
+
+    public int getNukututTunnit() {
+        return nukututTunnit;
+    }
+
+    public String getNahdytUnet() {
+        return nahdytUnet;
+    }
+
+    public String getEnnenNukkumaan() {
+        return ennenNukkumaan;
+    }
 }
