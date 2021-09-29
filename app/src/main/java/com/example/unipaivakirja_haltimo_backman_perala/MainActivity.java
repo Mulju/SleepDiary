@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+    // Määritellään nappi
     Button jatka;
 
     @Override
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Haetaan Jatka-napille view ja asetetaan kuuntelija
         jatka = findViewById(R.id.button_aloitus);
-
         jatka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
