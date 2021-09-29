@@ -15,23 +15,11 @@ public class Paivamaara {
         return paiva;
     }
 
-    public void setPaiva(int paiva) {
-        this.paiva = paiva;
-    }
-
     public int getKuukausi() {
         return kuukausi;
     }
 
-    public void setKuukausi(int kuukausi) {
-        this.kuukausi = kuukausi;
-    }
-
     public int getVuosi() {
         return vuosi;
-    }
-
-    public void setVuosi(int vuosi) {
-        this.vuosi = vuosi;
     }
 }
