@@ -2,4 +2,8 @@
     <string name="app_name">Unipaivakirja_Haltimo_Backman_Perala</string>
     <string name="textView_aloitus">Unipäiväkirja</string>
     <string name="button_aloitus">Jatka</string>
+    <string name="button_unigraafi">Unigraafi</string>
+    <string name="button_unesi">Sinun unesi</string>
+    <string name="button_asetukset">Asetukset</string>
+    <string name="buttton_kerroyo">Kerro yöstäsi</string>
 </resources>
