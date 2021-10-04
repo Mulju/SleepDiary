@@ -1,4 +1,4 @@
-package com.example.unipaivakirja_haltimo_backman_perala;
+package com.example.unipaivakirja_haltimo_backman_perala.classes;
 
 public class Paivamaara {
     private int paiva;

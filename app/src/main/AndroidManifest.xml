@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Unipaivakirja_Haltimo_Backman_Perala">
         <activity
-            android:name=".Asetukset"
-            android:parentActivityName=".Valikko" />
+            android:name=".layouts.Asetukset"
+            android:parentActivityName=".layouts.Valikko" />
         <activity
-            android:name=".Unigraafi"
-            android:parentActivityName=".Valikko" />
+            android:name=".layouts.Unigraafi"
+            android:parentActivityName=".layouts.Valikko" />
         <activity
-            android:name=".Unesi"
-            android:parentActivityName=".Valikko" />
+            android:name=".layouts.Unesi"
+            android:parentActivityName=".layouts.Valikko" />
         <activity
-            android:name=".KerroYostasi"
-            android:parentActivityName=".Valikko" />
+            android:name=".layouts.KerroYostasi"
+            android:parentActivityName=".layouts.Valikko" />
         <activity
-            android:name=".Valikko"
-            android:parentActivityName=".MainActivity" />
+            android:name=".layouts.Valikko"
+            android:parentActivityName=".layouts.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".layouts.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
