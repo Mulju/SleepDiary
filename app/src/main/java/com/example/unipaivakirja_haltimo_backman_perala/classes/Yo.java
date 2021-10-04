@@ -1,4 +1,6 @@
-package com.example.unipaivakirja_haltimo_backman_perala;
+package com.example.unipaivakirja_haltimo_backman_perala.classes;
+
+import com.example.unipaivakirja_haltimo_backman_perala.classes.Paivamaara;
 
 public class Yo {
     Paivamaara paivamaara;

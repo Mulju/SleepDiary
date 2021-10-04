@@ -1,4 +1,4 @@
-package com.example.unipaivakirja_haltimo_backman_perala;
+package com.example.unipaivakirja_haltimo_backman_perala.layouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.unipaivakirja_haltimo_backman_perala.R;
 
 public class Valikko extends AppCompatActivity {
     // määritellään nappulat
