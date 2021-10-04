@@ -6,4 +6,9 @@
     <string name="button_unesi">Sinun unesi</string>
     <string name="button_asetukset">Asetukset</string>
     <string name="buttton_kerroyo">Kerro yöstäsi</string>
+    <string name="button_laheta">Lähetä</string>
+    <string name="textView_mitenYosiMeni">Miten Yösi meni?</string>
+    <string name="textView_montaTuntiaNukuit">Kuinka monta tuntia nukuit?</string>
+    <string name="textView_mitaTeitEnnen">Mitä teit ennen nukkumaan menoa?</string>
+    <string name="textView_millaisiaUnia">Millaisia unia näit?</string>
 </resources>
