@@ -2,28 +2,97 @@ package com.example.unipaivakirja_haltimo_backman_perala.layouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 
+import java.util.ArrayList;
+
 public class Asetukset extends AppCompatActivity {
+    private ListView lvAsetukset;
+    ArrayList<String> lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asetukset);
-    }
+
+        // Testi Array listaa varten
+        /*lista.add("Moromoror");
+        lista.add("Heipsulihei");
+        lista.add("Juupselijuu");
+        lista.add("Jaapselijaa");
+
+        lvAsetukset = findViewById(R.id.listViewAsetukset);
+        // Toistaiseksi String, joutuu todennäköisesti kirjoittaa Asetukset luokan
+        // ja tekemään listanäkymän sen kautta
+        lvAsetukset.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.layout_lw_asetus,
+                lista));*/
+
+        /*lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });*/
+
+        /*final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final Button buttonPopUp = (Button) findViewById(R.id.button_popup);
+        View popUpView = inflater.inflate(R.layout.popup_example, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        buttonPopUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupWindow pw = new PopupWindow(popUpView, width, height, true);
+
+                pw.showAtLocation(view, Gravity.LEFT, 0, 0);
+                pw.update(8, -70, 150, 270);
+
+                ImageButton img = (ImageButton) popUpView.findViewById(R.id.home);
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("moro", "toimii");
+                    }
+                });
+            }
+        });
+    }*/
 
 
     // Esimerkin mukainen koodi, popup_example on extra tiedosto toistaiseksi
 
-    public void onButtonShowPopupWindowClick(View view) {
+    /*public void onButtonShowPopupWindowClick(View view) {
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
@@ -33,7 +102,7 @@ public class Asetukset extends AppCompatActivity {
         // create the popup window
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = false; // lets taps outside the popup also dismiss it
+        boolean focusable = true; // lets taps outside the popup also dismiss it
         final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         // show the popup window
@@ -47,6 +116,6 @@ public class Asetukset extends AppCompatActivity {
                 popupWindow.dismiss();
                 return true;
             }
-        });
+        });*/
     }
 }
