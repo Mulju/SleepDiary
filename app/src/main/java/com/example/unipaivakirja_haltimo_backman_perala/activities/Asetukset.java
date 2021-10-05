@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.Constants;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.User;
 
 import java.util.ArrayList;
 
@@ -21,10 +24,26 @@ public class Asetukset extends AppCompatActivity {
     private ListView lvAsetukset;
     ArrayList<String> lista;
 
+    // Testausta varten
+    ArrayList<String> testiLista;
+    private ListView lvTesti;
+    ArrayAdapter adapterTesti;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asetukset);
+
+        // popupin listviewn testaus
+        testiLista = new ArrayList<>();
+        testiLista.add("Suomi");
+        testiLista.add("English");
+        testiLista.add("Svenska");
+        adapterTesti = new ArrayAdapter<String>(this,
+                R.layout.layout_lw_asetus,
+                testiLista);
+
+
 
         lista = new ArrayList<>();
         // Testi Array listaa varten
@@ -45,6 +64,9 @@ public class Asetukset extends AppCompatActivity {
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
 
+
+
+
         lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -60,6 +82,30 @@ public class Asetukset extends AppCompatActivity {
                         View popUpViewKieli = inflater.inflate(R.layout.popup_kieli, null);
                         PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
                         pwKieli.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                        Log.d("testaus", "ennen findia");
+                        lvTesti = popUpViewKieli.findViewById(R.id.lvTesti);
+                        Log.d("testaus", "lvTestin arvo: ");
+                        // Käytän samaa layouttia testilistallekkin
+                        lvTesti.setAdapter(adapterTesti);
+                        // Popupin sisäinen listview missä valitaan asetuksen arvo
+                        lvTesti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                               switch (i) {
+                                   case 0:
+                                       // Höhöö valitsi suomen
+                                       User.getInstance().setAsetusKieli(Constants.LANG_FIN);
+                                       break;
+                                   case 1:
+                                       User.getInstance().setAsetusKieli(Constants.LANG_ENG);
+                                       break;
+                                   case 2:
+                                       User.getInstance().setAsetusKieli(Constants.LAND_SWE);
+                               }
+                            }
+                        });
+
                         break;
                     case 2:
                         View popUpViewFontti = inflater.inflate(R.layout.popup_fontti, null);
@@ -76,31 +122,6 @@ public class Asetukset extends AppCompatActivity {
                 }
             }
         });
-
-        /*final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View popUpView = inflater.inflate(R.layout.popup_example, null);
-
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-
-        buttonPopUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupWindow pw = new PopupWindow(popUpView, width, height, true);
-
-                pw.showAtLocation(view, Gravity.LEFT, 0, 0);
-                pw.update(8, -70, 150, 270);
-
-                ImageButton img = (ImageButton) popUpView.findViewById(R.id.home);
-                img.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.d("moro", "toimii");
-                    }
-                });
-            }
-        });
-    }*/
 
 
     // Esimerkin mukainen koodi, popup_example on extra tiedosto toistaiseksi
