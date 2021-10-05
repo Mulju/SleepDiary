@@ -1,23 +1,12 @@
-package com.example.unipaivakirja_haltimo_backman_perala.layouts;
+package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 
@@ -32,24 +21,25 @@ public class Asetukset extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asetukset);
 
-        // Testi Array listaa varten
-        /*lista.add("Moromoror");
-        lista.add("Heipsulihei");
-        lista.add("Juupselijuu");
-        lista.add("Jaapselijaa");
+        /*// Testi Array listaa varten
+        lista.add("Dark Mode");
+        lista.add("Kieli");
+        lista.add("Fontin koko");
+        lista.add("DD.MM.YYYY");*/
 
-        lvAsetukset = findViewById(R.id.listViewAsetukset);
+        /*lvAsetukset = findViewById(R.id.listViewAsetukset);
         // Toistaiseksi String, joutuu todennäköisesti kirjoittaa Asetukset luokan
         // ja tekemään listanäkymän sen kautta
         lvAsetukset.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_lw_asetus,
-                lista));*/
+                lista));
 
-        /*lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
+
                         break;
                     case 1:
                         break;
