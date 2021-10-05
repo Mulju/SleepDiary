@@ -2,11 +2,16 @@ package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 
@@ -21,40 +26,58 @@ public class Asetukset extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asetukset);
 
-        /*// Testi Array listaa varten
+        lista = new ArrayList<>();
+        // Testi Array listaa varten
         lista.add("Dark Mode");
         lista.add("Kieli");
         lista.add("Fontin koko");
-        lista.add("DD.MM.YYYY");*/
+        lista.add("DD.MM.YYYY");
 
-        /*lvAsetukset = findViewById(R.id.listViewAsetukset);
+        lvAsetukset = findViewById(R.id.listViewAsetukset);
         // Toistaiseksi String, joutuu todennäköisesti kirjoittaa Asetukset luokan
         // ja tekemään listanäkymän sen kautta
         lvAsetukset.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_lw_asetus,
                 lista));
 
+        final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+
         lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-
+                        // Luodaan layoutissa määritellyn mukainen popup ikkuna
+                        View popUpViewDarkMode = inflater.inflate(R.layout.popup_dark_mode, null);
+                        PopupWindow pwDarkMode = new PopupWindow(popUpViewDarkMode, width, height, true);
+                        // Asemoidaan luotu popup ikkuna keskelle näyttöä
+                        pwDarkMode.showAtLocation(view, Gravity.CENTER, 0, 0);
                         break;
                     case 1:
+                        View popUpViewKieli = inflater.inflate(R.layout.popup_kieli, null);
+                        PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
+                        pwKieli.showAtLocation(view, Gravity.CENTER, 0, 0);
                         break;
                     case 2:
+                        View popUpViewFontti = inflater.inflate(R.layout.popup_fontti, null);
+                        PopupWindow pwFontti = new PopupWindow(popUpViewFontti, width, height, true);
+                        pwFontti.showAtLocation(view, Gravity.CENTER, 0, 0);
                         break;
                     case 3:
+                        View popUpViewDD = inflater.inflate(R.layout.popup_dd, null);
+                        PopupWindow pwDD = new PopupWindow(popUpViewDD, width, height, true);
+                        pwDD.showAtLocation(view, Gravity.CENTER, 0, 0);
                         break;
                     default:
                         break;
                 }
             }
-        });*/
+        });
 
         /*final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final Button buttonPopUp = (Button) findViewById(R.id.button_popup);
         View popUpView = inflater.inflate(R.layout.popup_example, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
