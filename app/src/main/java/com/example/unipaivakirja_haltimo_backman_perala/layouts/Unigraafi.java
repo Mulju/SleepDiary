@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.Yo;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.YoData;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
@@ -14,6 +16,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,6 +25,8 @@ public class Unigraafi extends AppCompatActivity {
     GraphView graphView;
     LineGraphSeries<DataPoint> series;
     SimpleDateFormat sdf = new SimpleDateFormat("d.M");
+    YoData data = YoData.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +47,7 @@ public class Unigraafi extends AppCompatActivity {
                 }
             }
         });
-
+        for(int i = 0; i < data.getYot().size(); i++);
     }
     private DataPoint[] getDataPoint() {
         DataPoint[] dp = new DataPoint[]
