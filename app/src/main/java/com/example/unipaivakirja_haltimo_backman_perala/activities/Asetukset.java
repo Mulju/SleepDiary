@@ -52,7 +52,7 @@ public class Asetukset extends AppCompatActivity {
         listaAsetukset.add("Dark Mode");
         listaAsetukset.add("Kieli");
         listaAsetukset.add("Fontin koko");
-        listaAsetukset.add("DD.MM.YYYY");
+        listaAsetukset.add("Päiväyksen muotoilu");
         // Haetaan asetusten listalle näkymällä view-objekti
         lvAsetukset = findViewById(R.id.listViewAsetukset);
         // Asetetaan listalle adapteri
@@ -112,7 +112,7 @@ public class Asetukset extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                // Käytetään hyväksi listan indeksi i
+                // Käytetään hyväksi listan indeksiä i
                 // Tämän avulla voidaan käyttää switch-case rakennetta
                 // ja valita oikean asetuksen popup-ikkuna
                 switch (i) {
@@ -140,6 +140,14 @@ public class Asetukset extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                                 // Switch lause sisältää asetuksen mahdolliset valinnat
+
+                                // Tänne kaikkiin asetuksiin vielä sisälle itse valinnan tallennus
+                                // kun nappia painetaan
+
+                                // Pitääkö siis poistaa Useriin muuttujan tilan tallennus switch casessa?
+                                // Ja siirtää se napin onclicklisteneriin?
+
+                                // Napin on clickiin alhaalla oleva kommentoitu dismiss!!
                                 switch (i) {
                                     case 0:
                                         User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
@@ -152,6 +160,7 @@ public class Asetukset extends AppCompatActivity {
                                         break;
                                     default:
                                         User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
+                                        break;
                                 }
                             }
                         });
@@ -181,6 +190,7 @@ public class Asetukset extends AppCompatActivity {
                                        break;
                                    default:
                                        User.getInstance().setAsetusKieli(Constants.LANG_FIN);
+                                       break;
                                }
                             }
                         });
@@ -189,13 +199,60 @@ public class Asetukset extends AppCompatActivity {
                     case 2:
                         View popUpViewFontti = inflater.inflate(R.layout.popup_fontti, null);
                         PopupWindow pwFontti = new PopupWindow(popUpViewFontti, width, height, true);
+                        pwFontti.setElevation(20);
                         pwFontti.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                        lvFontti = popUpViewFontti.findViewById(R.id.lvFontti);
+                        lvFontti.setAdapter(arrayAdapterFontti);
+
+                        lvFontti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                switch (i) {
+                                    case 0:
+                                        User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_LARGE);
+                                        break;
+                                    case 1:
+                                        User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_MEDIUM);
+                                        break;
+                                    case 2:
+                                        User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_SMALL);
+                                        break;
+                                    default:
+                                        User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_MEDIUM);
+                                        break;
+                                }
+                            }
+                        });
                         break;
+
                     case 3:
                         View popUpViewDD = inflater.inflate(R.layout.popup_dd, null);
                         PopupWindow pwDD = new PopupWindow(popUpViewDD, width, height, true);
+                        pwDD.setElevation(20);
                         pwDD.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                        lvDD = popUpViewDD.findViewById(R.id.lvDD);
+                        lvDD.setAdapter(arrayAdapterDD);
+
+                        lvDD.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                switch (i) {
+                                    case 0:
+                                        User.getInstance().setAsetusDDMMYYYY(Constants.DD_MM_YYYY);
+                                        break;
+                                    case 1:
+                                        User.getInstance().setAsetusDDMMYYYY(Constants.MM_DD_YYYY);
+                                        break;
+                                    default:
+                                        User.getInstance().setAsetusDDMMYYYY(Constants.DD_MM_YYYY);
+                                        break;
+                                }
+                            }
+                        });
                         break;
+
                     default:
                         break;
                 }
