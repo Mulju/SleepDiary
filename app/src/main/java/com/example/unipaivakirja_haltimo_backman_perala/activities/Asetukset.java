@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -210,6 +211,10 @@ public class Asetukset extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 switch (i) {
                                     case 0:
+                                        // näin muutetaan yksittäisen napin fonttikoko
+                                        // ((Button) findViewById(R.id.buttonPopUpDD)).setTextSize();
+
+                                        // Lue styles and themes
                                         User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_LARGE);
                                         break;
                                     case 1:
