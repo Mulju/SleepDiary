@@ -12,4 +12,6 @@
     <string name="textView_mitaTeitEnnen">Mitä teit ennen nukkumaan menoa?</string>
     <string name="textView_millaisiaUnia">Millaisia unia näit?</string>
     <string name="textView_sinunUnesi">Sinun unesi</string>
+    <string name="textView_popup_tallenna">Tallenna asetukset painamalla nappia</string>
+    <string name="button_popup_tallennus">Tallenna</string>
 </resources>

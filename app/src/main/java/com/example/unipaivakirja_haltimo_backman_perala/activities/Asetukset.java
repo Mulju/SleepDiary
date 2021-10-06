@@ -3,6 +3,9 @@ package com.example.unipaivakirja_haltimo_backman_perala.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -124,6 +127,10 @@ public class Asetukset extends AppCompatActivity {
                     case 1:
                         View popUpViewKieli = inflater.inflate(R.layout.popup_kieli, null);
                         PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
+
+                        // Asetetaan popupille pieni noste
+                        // res.drawable.popup_background löytyy tiedosto millä luodaan popupin borderi
+                        pwKieli.setElevation(20);
                         pwKieli.showAtLocation(view, Gravity.CENTER, 0, 0);
 
 
