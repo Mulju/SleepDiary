@@ -95,7 +95,8 @@ public class Asetukset extends AppCompatActivity {
                 listaAsetuksetDD);
 
 
-        // Inflaterillä luodaan popuppia varten elementit
+        // Alustetaan inflater
+        // Inflaterillä luodaan popuppeja varten elementit
         final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         // Popuppia varten korkeus- ja leveysmitat
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -113,7 +114,8 @@ public class Asetukset extends AppCompatActivity {
                 // ja valita oikean asetuksen popup-ikkuna
                 switch (i) {
                     case 0:
-                        // Luodaan layoutissa määritellyn mukainen popup ikkuna
+                        // Luodaan layoutissa määritellyn mukainen popup ikkuna inflaterin avulla
+                        // Root toistaiseksi null
                         View popUpViewDarkMode = inflater.inflate(R.layout.popup_dark_mode, null);
                         PopupWindow pwDarkMode = new PopupWindow(popUpViewDarkMode, width, height, true);
                         // Asemoidaan luotu popup ikkuna keskelle näyttöä
@@ -124,9 +126,8 @@ public class Asetukset extends AppCompatActivity {
                         PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
                         pwKieli.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-                        Log.d("testaus", "ennen findia");
+
                         lvKieli = popUpViewKieli.findViewById(R.id.lvKieli);
-                        Log.d("testaus", "lvKielin arvo: ");
                         // Käytän samaa layouttia listaAsetuksetKielillekkin
                         lvKieli.setAdapter(arrayAdapterKieli);
                         // Popupin sisäinen listview missä valitaan asetuksen arvo

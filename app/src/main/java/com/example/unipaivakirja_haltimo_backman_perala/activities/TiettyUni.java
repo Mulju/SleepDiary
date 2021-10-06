@@ -1,4 +1,4 @@
-package com.example.unipaivakirja_haltimo_backman_perala.layouts;
+package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
