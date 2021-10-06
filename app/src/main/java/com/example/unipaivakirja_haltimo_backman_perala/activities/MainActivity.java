@@ -1,4 +1,4 @@
-package com.example.unipaivakirja_haltimo_backman_perala.layouts;
+package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.Constants;
 
 public class MainActivity extends AppCompatActivity {
     // Määritellään nappi
