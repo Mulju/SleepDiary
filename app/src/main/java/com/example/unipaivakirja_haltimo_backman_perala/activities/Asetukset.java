@@ -121,29 +121,56 @@ public class Asetukset extends AppCompatActivity {
                         // Root toistaiseksi null
                         View popUpViewDarkMode = inflater.inflate(R.layout.popup_dark_mode, null);
                         PopupWindow pwDarkMode = new PopupWindow(popUpViewDarkMode, width, height, true);
+
+                        // Asetetaan popupille pieni noste (eli varjo)
+                        // res.drawable.popup_background löytyy tiedosto millä luodaan popupin borderi
+                        pwDarkMode.setElevation(20);
+
                         // Asemoidaan luotu popup ikkuna keskelle näyttöä
                         pwDarkMode.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+                        // Haetaan listanäkymän view olio
+                        lvDarkMode = popUpViewDarkMode.findViewById(R.id.lvDarkMode);
+                        // Asetetaan sille adapteri
+                        lvDarkMode.setAdapter(arrayAdapterDarkMode);
+
+                        // Popupin sisäinen listview missä valitaan asetuksen arvo
+                        lvDarkMode.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                // Switch lause sisältää asetuksen mahdolliset valinnat
+                                switch (i) {
+                                    case 0:
+                                        User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
+                                        break;
+                                    case 1:
+                                        User.getInstance().setAsetusDarkMode(Constants.LIGHT_MODE_ON);
+                                        break;
+                                    case 2:
+                                        User.getInstance().setAsetusDarkMode(Constants.DARK_MODE_ON);
+                                        break;
+                                    default:
+                                        User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
+                                }
+                            }
+                        });
                         break;
+
                     case 1:
                         View popUpViewKieli = inflater.inflate(R.layout.popup_kieli, null);
                         PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
-
-                        // Asetetaan popupille pieni noste
-                        // res.drawable.popup_background löytyy tiedosto millä luodaan popupin borderi
                         pwKieli.setElevation(20);
                         pwKieli.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-
                         lvKieli = popUpViewKieli.findViewById(R.id.lvKieli);
-                        // Käytän samaa layouttia listaAsetuksetKielillekkin
                         lvKieli.setAdapter(arrayAdapterKieli);
-                        // Popupin sisäinen listview missä valitaan asetuksen arvo
+
                         lvKieli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                switch (i) {
                                    case 0:
-                                       // Höhöö valitsi suomen
                                        User.getInstance().setAsetusKieli(Constants.LANG_FIN);
                                        break;
                                    case 1:
@@ -151,11 +178,14 @@ public class Asetukset extends AppCompatActivity {
                                        break;
                                    case 2:
                                        User.getInstance().setAsetusKieli(Constants.LAND_SWE);
+                                       break;
+                                   default:
+                                       User.getInstance().setAsetusKieli(Constants.LANG_FIN);
                                }
                             }
                         });
-
                         break;
+
                     case 2:
                         View popUpViewFontti = inflater.inflate(R.layout.popup_fontti, null);
                         PopupWindow pwFontti = new PopupWindow(popUpViewFontti, width, height, true);
