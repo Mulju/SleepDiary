@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 
@@ -35,11 +36,26 @@ public class KerroYostasi extends AppCompatActivity {
         String tunnitGraafiin = tunnit.getText().toString();
         String tehdytAsiat = mitaTeit.getText().toString();
         String kerrotutUnet = unet.getText().toString();
-        editor.putString("paivays", paivays);
-        editor.putString("tunnitGraafiin", tunnitGraafiin);
-        editor.putString("tehdytAsiat", tehdytAsiat);
-        editor.putString("kerrotutUnet", kerrotutUnet);
-        editor.commit();
+
+        // if-lause joka varmistaa ettei annetut tunnit ole absurdeja
+
+        if (!tunnitGraafiin.equals("0") && !tunnitGraafiin.equals("1") && !tunnitGraafiin.equals("2") && !tunnitGraafiin.equals("3") &&
+                !tunnitGraafiin.equals("4") && !tunnitGraafiin.equals("5") && !tunnitGraafiin.equals("6") &&
+                !tunnitGraafiin.equals("7") && !tunnitGraafiin.equals("8") && !tunnitGraafiin.equals("9") &&
+                !tunnitGraafiin.equals("10") && !tunnitGraafiin.equals("11") && !tunnitGraafiin.equals("12") && !tunnitGraafiin.equals("13")
+                && !tunnitGraafiin.equals("14")) {
+
+            Toast.makeText(KerroYostasi.this, "Syötä validit arvot (tunnit 0-14)", Toast.LENGTH_SHORT).show();
+
+        } else {
+            editor.putString("paivays", paivays);
+            editor.putString("tunnitGraafiin", tunnitGraafiin);
+            editor.putString("tehdytAsiat", tehdytAsiat);
+            editor.putString("kerrotutUnet", kerrotutUnet);
+            editor.commit();
+            Toast.makeText(KerroYostasi.this, "Data tallennettu", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }

@@ -11,4 +11,5 @@
     <string name="textView_montaTuntiaNukuit">Kuinka monta tuntia nukuit?</string>
     <string name="textView_mitaTeitEnnen">Mitä teit ennen nukkumaan menoa?</string>
     <string name="textView_millaisiaUnia">Millaisia unia näit?</string>
+    <string name="textView_sinunUnesi">Sinun unesi</string>
 </resources>
