@@ -21,55 +21,96 @@ import com.example.unipaivakirja_haltimo_backman_perala.classes.User;
 import java.util.ArrayList;
 
 public class Asetukset extends AppCompatActivity {
+    // listanäkymä eri asetuksille
     private ListView lvAsetukset;
-    ArrayList<String> lista;
+    ArrayList<String> listaAsetukset;
 
-    // Testausta varten
-    ArrayList<String> testiLista;
-    private ListView lvTesti;
-    ArrayAdapter adapterTesti;
+    // lista näkymät yksittäisen asetuksen valinnoille
+    ArrayList<String> listaAsetuksetDarkMode;
+    ArrayList<String> listaAsetuksetKieli;
+    ArrayList<String> listaAsetuksetFontti;
+    ArrayList<String> listaAsetuksetDD;
+    private ListView lvDarkMode;
+    private ListView lvKieli;
+    private ListView lvFontti;
+    private ListView lvDD;
+    ArrayAdapter arrayAdapterDarkMode;
+    ArrayAdapter arrayAdapterKieli;
+    ArrayAdapter arrayAdapterFontti;
+    ArrayAdapter arrayAdapterDD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asetukset);
 
-        // popupin listviewn testaus
-        testiLista = new ArrayList<>();
-        testiLista.add("Suomi");
-        testiLista.add("English");
-        testiLista.add("Svenska");
-        adapterTesti = new ArrayAdapter<String>(this,
-                R.layout.layout_lw_asetus,
-                testiLista);
-
-
-
-        lista = new ArrayList<>();
-        // Testi Array listaa varten
-        lista.add("Dark Mode");
-        lista.add("Kieli");
-        lista.add("Fontin koko");
-        lista.add("DD.MM.YYYY");
-
+        // Asetusten listaa varten alustettava array
+        listaAsetukset = new ArrayList<>();
+        listaAsetukset.add("Dark Mode");
+        listaAsetukset.add("Kieli");
+        listaAsetukset.add("Fontin koko");
+        listaAsetukset.add("DD.MM.YYYY");
+        // Haetaan asetusten listalle näkymällä view-objekti
         lvAsetukset = findViewById(R.id.listViewAsetukset);
-        // Toistaiseksi String, joutuu todennäköisesti kirjoittaa Asetukset luokan
-        // ja tekemään listanäkymän sen kautta
+        // Asetetaan listalle adapteri
         lvAsetukset.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_lw_asetus,
-                lista));
+                listaAsetukset));
 
+
+        // Yksittäisen asetuksen listanäkymän arrayn alustus
+        // Perässä myös array adapterin luonti, sillä
+        // sen luominen on clickin sisällä aiheutti errorin
+        // Luominen ennen, ja sijoittaminen on clickissä sen sijaan toimi
+        listaAsetuksetDarkMode = new ArrayList<>();
+        listaAsetuksetDarkMode.add("System Default");
+        listaAsetuksetDarkMode.add("Light Mode");
+        listaAsetuksetDarkMode.add("Dark Mode");
+        // Miksei array adapterille tule <String>?
+        arrayAdapterDarkMode =  new ArrayAdapter(this,
+                R.layout.layout_lw_asetus,
+                listaAsetuksetDarkMode);
+
+        listaAsetuksetKieli = new ArrayList<>();
+        listaAsetuksetKieli.add("Suomi");
+        listaAsetuksetKieli.add("English");
+        listaAsetuksetKieli.add("Svenska");
+        arrayAdapterKieli = new ArrayAdapter<String>(this,
+                R.layout.layout_lw_asetus,
+                listaAsetuksetKieli);
+
+        listaAsetuksetFontti = new ArrayList<>();
+        listaAsetuksetFontti.add("Iso fontti");
+        listaAsetuksetFontti.add("Keskikokoinen fontti");
+        listaAsetuksetFontti.add("Pieni fontti");
+        arrayAdapterFontti = new ArrayAdapter(this,
+                R.layout.layout_lw_asetus,
+                listaAsetuksetFontti);
+
+        listaAsetuksetDD = new ArrayList<>();
+        listaAsetuksetDD.add("DD.MM.YYYY");
+        listaAsetuksetDD.add("MM.DD.YYYY");
+        arrayAdapterDD = new ArrayAdapter(this,
+                R.layout.layout_lw_asetus,
+                listaAsetuksetDD);
+
+
+        // Inflaterillä luodaan popuppia varten elementit
         final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // Popuppia varten korkeus- ja leveysmitat
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
 
 
-
-
+        // Asetetaan asetusten listviewille on click listener
         lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                // Käytetään hyväksi listan indeksi i
+                // Tämän avulla voidaan käyttää switch-case rakennetta
+                // ja valita oikean asetuksen popup-ikkuna
                 switch (i) {
                     case 0:
                         // Luodaan layoutissa määritellyn mukainen popup ikkuna
@@ -84,12 +125,12 @@ public class Asetukset extends AppCompatActivity {
                         pwKieli.showAtLocation(view, Gravity.CENTER, 0, 0);
 
                         Log.d("testaus", "ennen findia");
-                        lvTesti = popUpViewKieli.findViewById(R.id.lvTesti);
-                        Log.d("testaus", "lvTestin arvo: ");
-                        // Käytän samaa layouttia testilistallekkin
-                        lvTesti.setAdapter(adapterTesti);
+                        lvKieli = popUpViewKieli.findViewById(R.id.lvKieli);
+                        Log.d("testaus", "lvKielin arvo: ");
+                        // Käytän samaa layouttia listaAsetuksetKielillekkin
+                        lvKieli.setAdapter(arrayAdapterKieli);
                         // Popupin sisäinen listview missä valitaan asetuksen arvo
-                        lvTesti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        lvKieli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                switch (i) {
