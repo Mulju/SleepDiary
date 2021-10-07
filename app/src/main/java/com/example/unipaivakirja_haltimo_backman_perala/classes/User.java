@@ -1,6 +1,7 @@
 package com.example.unipaivakirja_haltimo_backman_perala.classes;
 
 
+import java.util.ArrayList;
 
 public class User {
     private static final User ourInstance = new User();
@@ -8,6 +9,7 @@ public class User {
     private int asetusKieli;
     private int asetusFontSize;
     private int asetusDDMMYYYY;
+    YoData data = YoData.getInstance();
 
     private User() {
         this.asetusDarkMode = Constants.SYSTEM_DEFAULT;
@@ -51,5 +53,11 @@ public class User {
     public void setAsetusDDMMYYYY(int asetusDDMMYYYY) {
         this.asetusDDMMYYYY = asetusDDMMYYYY;
     }
+
+    public void haeYot(){
+        data.getYot();
+    }
+
+
 }
 
