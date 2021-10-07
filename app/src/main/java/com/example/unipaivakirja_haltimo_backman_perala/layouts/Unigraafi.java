@@ -47,7 +47,6 @@ public class Unigraafi extends AppCompatActivity {
                 }
             }
         });
-        for(int i = 0; i < data.getYot().size(); i++);
     }
     private DataPoint[] getDataPoint() {
         DataPoint[] dp = new DataPoint[]
