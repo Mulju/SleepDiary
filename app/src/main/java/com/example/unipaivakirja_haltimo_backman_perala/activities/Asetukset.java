@@ -2,7 +2,9 @@ package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -41,6 +44,9 @@ public class Asetukset extends AppCompatActivity {
     ArrayAdapter arrayAdapterKieli;
     ArrayAdapter arrayAdapterFontti;
     ArrayAdapter arrayAdapterDD;
+
+    // Shared pref tallennusta varten
+    SharedPreferences prefPut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +111,11 @@ public class Asetukset extends AppCompatActivity {
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
+        // Haetaan shared pref
+        prefPut = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
+        // Myös editori
+        SharedPreferences.Editor prefEditor = prefPut.edit();
+
 
 
         // Asetetaan asetusten listviewille on click listener
@@ -116,6 +127,8 @@ public class Asetukset extends AppCompatActivity {
                 // Tämän avulla voidaan käyttää switch-case rakennetta
                 // ja valita oikean asetuksen popup-ikkuna
                 switch (i) {
+
+                    // Valinta Dark Mode
                     case 0:
                         // Luodaan layoutissa määritellyn mukainen popup ikkuna inflaterin avulla
                         // Root toistaiseksi null
@@ -150,22 +163,37 @@ public class Asetukset extends AppCompatActivity {
                                 // Napin on clickiin alhaalla oleva kommentoitu dismiss!!
                                 switch (i) {
                                     case 0:
+                                        // Tallennetaan käyttäjän tekemä valinta User-singletoniin
                                         User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
+                                        // Tallennetaan käyttäjän tekemä valinta share preferenceihin
+                                        prefEditor.putInt("Dark Mode", Constants.SYSTEM_DEFAULT);
+                                        prefEditor.commit();
+                                        // Valinnan tekeminen list viewissä tappaa popup ikkunan
+                                        pwDarkMode.dismiss();
                                         break;
                                     case 1:
                                         User.getInstance().setAsetusDarkMode(Constants.LIGHT_MODE_ON);
+                                        prefEditor.putInt("Dark Mode", Constants.LIGHT_MODE_ON);
+                                        prefEditor.commit();
+                                        pwDarkMode.dismiss();
                                         break;
                                     case 2:
                                         User.getInstance().setAsetusDarkMode(Constants.DARK_MODE_ON);
+                                        prefEditor.putInt("Dark Mode", Constants.DARK_MODE_ON);
+                                        prefEditor.commit();
+                                        pwDarkMode.dismiss();
                                         break;
                                     default:
                                         User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
+                                        prefEditor.putInt("Dark Mode", Constants.SYSTEM_DEFAULT);
+                                        prefEditor.commit();
                                         break;
                                 }
                             }
                         });
                         break;
 
+                    // Valinta kieli
                     case 1:
                         View popUpViewKieli = inflater.inflate(R.layout.popup_kieli, null);
                         PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
@@ -181,21 +209,33 @@ public class Asetukset extends AppCompatActivity {
                                switch (i) {
                                    case 0:
                                        User.getInstance().setAsetusKieli(Constants.LANG_FIN);
+                                       prefEditor.putInt("Kieli", Constants.LANG_FIN);
+                                       prefEditor.commit();
+                                       pwKieli.dismiss();
                                        break;
                                    case 1:
                                        User.getInstance().setAsetusKieli(Constants.LANG_ENG);
+                                       prefEditor.putInt("Kieli", Constants.LANG_ENG);
+                                       prefEditor.commit();
+                                       pwKieli.dismiss();
                                        break;
                                    case 2:
-                                       User.getInstance().setAsetusKieli(Constants.LAND_SWE);
+                                       User.getInstance().setAsetusKieli(Constants.LANG_SWE);
+                                       prefEditor.putInt("Kieli", Constants.LANG_SWE);
+                                       prefEditor.commit();
+                                       pwKieli.dismiss();
                                        break;
                                    default:
                                        User.getInstance().setAsetusKieli(Constants.LANG_FIN);
+                                       prefEditor.putInt("Kieli", Constants.LANG_FIN);
+                                       prefEditor.commit();
                                        break;
                                }
                             }
                         });
                         break;
 
+                    // Valinta fontti koko
                     case 2:
                         View popUpViewFontti = inflater.inflate(R.layout.popup_fontti, null);
                         PopupWindow pwFontti = new PopupWindow(popUpViewFontti, width, height, true);
@@ -210,22 +250,38 @@ public class Asetukset extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 switch (i) {
                                     case 0:
+                                        // näin muutetaan yksittäisen napin fonttikoko
+                                        // ((Button) findViewById(R.id.buttonPopUpDD)).setTextSize();
+
+                                        // Lue styles and themes
                                         User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_LARGE);
+                                        prefEditor.putInt("Fontti", Constants.FONT_SIZE_LARGE);
+                                        prefEditor.commit();
+                                        pwFontti.dismiss();
                                         break;
                                     case 1:
                                         User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_MEDIUM);
+                                        prefEditor.putInt("Fontti", Constants.FONT_SIZE_MEDIUM);
+                                        prefEditor.commit();
+                                        pwFontti.dismiss();
                                         break;
                                     case 2:
                                         User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_SMALL);
+                                        prefEditor.putInt("Fontti", Constants.FONT_SIZE_SMALL);
+                                        prefEditor.commit();
+                                        pwFontti.dismiss();
                                         break;
                                     default:
                                         User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_MEDIUM);
+                                        prefEditor.putInt("Fontti", Constants.FONT_SIZE_MEDIUM);
+                                        prefEditor.commit();
                                         break;
                                 }
                             }
                         });
                         break;
 
+                    // Valinta päiväyksen muotoilu
                     case 3:
                         View popUpViewDD = inflater.inflate(R.layout.popup_dd, null);
                         PopupWindow pwDD = new PopupWindow(popUpViewDD, width, height, true);
@@ -241,12 +297,20 @@ public class Asetukset extends AppCompatActivity {
                                 switch (i) {
                                     case 0:
                                         User.getInstance().setAsetusDDMMYYYY(Constants.DD_MM_YYYY);
+                                        prefEditor.putInt("DD", Constants.DD_MM_YYYY);
+                                        prefEditor.commit();
+                                        pwDD.dismiss();
                                         break;
                                     case 1:
                                         User.getInstance().setAsetusDDMMYYYY(Constants.MM_DD_YYYY);
+                                        prefEditor.putInt("DD", Constants.MM_DD_YYYY);
+                                        prefEditor.commit();
+                                        pwDD.dismiss();
                                         break;
                                     default:
                                         User.getInstance().setAsetusDDMMYYYY(Constants.DD_MM_YYYY);
+                                        prefEditor.putInt("DD", Constants.DD_MM_YYYY);
+                                        prefEditor.commit();
                                         break;
                                 }
                             }
@@ -258,8 +322,6 @@ public class Asetukset extends AppCompatActivity {
                 }
             }
         });
-
-
     // Esimerkin mukainen koodi, popup_example on extra tiedosto toistaiseksi
 
     /*public void onButtonShowPopupWindowClick(View view) {
