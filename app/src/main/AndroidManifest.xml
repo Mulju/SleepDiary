@@ -13,6 +13,9 @@
             android:name=".activities.Asetukset"
             android:parentActivityName=".activities.Valikko" />
         <activity
+            android:name=".activities.TiettyUni"
+            android:parentActivityName=".activities.Unesi" />
+        <activity
             android:name=".activities.Unigraafi"
             android:parentActivityName=".activities.Valikko" />
         <activity

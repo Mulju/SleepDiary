@@ -14,4 +14,6 @@
     <string name="textView_sinunUnesi">Sinun unesi</string>
     <string name="textView_popup_tallenna">Tallenna asetukset painamalla nappia</string>
     <string name="button_popup_tallennus">Tallenna</string>
+    <string name="textView_tiettyUni3">Unet</string>
+    <string name="textView_tiettyUni4">Ennen nukkumaan menoa tehdyt asiat</string>
 </resources>

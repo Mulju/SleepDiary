@@ -10,7 +10,7 @@
         android:id="@+id/textView_sinunUnesi"
         android:layout_width="167dp"
         android:layout_height="46dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="4dp"
         android:text="@string/textView_sinunUnesi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,10 +18,11 @@
 
     <ListView
         android:id="@+id/listView_unet"
-        android:layout_width="409dp"
-        android:layout_height="639dp"
+        android:layout_width="323dp"
+        android:layout_height="562dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_sinunUnesi" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_sinunUnesi"
+        app:layout_constraintVertical_bias="0.928" />
 </androidx.constraintlayout.widget.ConstraintLayout>
