@@ -11,7 +11,11 @@ public class YoData {
     }
 
     private YoData() {
-        this.yot = new ArrayList<>();
+
+
+        yot = new ArrayList<>();
+        yot.add(new Yo(1, 1, 1, 1, "hubba,", "bubba"));
+        yot.add(new Yo(12, 1, 1, 1, "hubba2,", "bubba2"));
     }
 
     public void addYo(Yo yo) {
@@ -19,6 +23,6 @@ public class YoData {
     }
 
     public ArrayList<Yo> getYot() {
-        return this.yot;
+        return yot;
     }
 }

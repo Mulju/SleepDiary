@@ -3,11 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/drawable/popup_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_asetukset.xml" value="0.264" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_valikko.xml" value="0.264" />
-        <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/layout_lw_asetus.xml" value="0.4" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/popup_asetukset.xml" value="0.2" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/popup_dark_mode.xml" value="0.2" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/popup_dd.xml" value="0.25416666666666665" />
@@ -15,6 +13,8 @@
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/popup_fontti.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Samuli/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/popup_kieli.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/pyryp/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_kerro_yostasi.xml" value="0.264" />
+        <entry key="..\:/Users/pyryp/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_tietty_uni.xml" value="0.264" />
+        <entry key="..\:/Users/pyryp/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_unesi.xml" value="0.264" />
         <entry key="..\:/Users/pyryp/AndroidStudioProjects/Unipaivakirja_Haltimo_Backman_Perala/app/src/main/res/layout/activity_valikko.xml" value="0.264" />
       </map>
     </option>

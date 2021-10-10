@@ -13,10 +13,13 @@ import com.example.unipaivakirja_haltimo_backman_perala.R;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.Yo;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.YoData;
 
+import java.util.ArrayList;
+
 public class Unesi extends AppCompatActivity {
 
-    ListView lvUnet;
+    private ListView lvUnet;
     public static final String EXTRA_MESSAGE = "com.example.unipaivakirja.MESSAGE";
+    public static final String EXTRA_MESSAGE2 = "com.example.unipaivakirja.MESSAGE2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +29,10 @@ public class Unesi extends AppCompatActivity {
         lvUnet = findViewById(R.id.listView_unet);
         Intent intent = new Intent(this, TiettyUni.class);
 
-        ArrayAdapter<Yo> uniAdapteri = new ArrayAdapter<Yo>(this, R.layout.listview_layout, YoData.getInstance().getYot());
-        lvUnet.setAdapter(uniAdapteri);
+
+        lvUnet.setAdapter(new ArrayAdapter<Yo>(this,
+                R.layout.listview_layout,
+                YoData.getInstance().getYot()));
 
 
         lvUnet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -37,6 +42,8 @@ public class Unesi extends AppCompatActivity {
 
                 String message = YoData.getInstance().getYot().get(i).getNahdytUnet();
                 intent.putExtra(EXTRA_MESSAGE, message);
+                String message2 = YoData.getInstance().getYot().get(i).getEnnenNukkumaan();
+                intent.putExtra(EXTRA_MESSAGE2, message2);
 
                 startActivity(intent);
             }

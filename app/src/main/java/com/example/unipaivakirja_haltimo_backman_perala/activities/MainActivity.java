@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences prefGet = getSharedPreferences("mee", Activity.MODE_PRIVATE);
-        String paivays = prefGet.getString("paivays", "0");
+        SharedPreferences prefGet = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
+        String paiva = prefGet.getString("paiva", "0");
+        String kuukausi = prefGet.getString("kuukausi", "0");
+        String vuosi = prefGet.getString("vuosi", "0");
         String tunnitGraafiin = prefGet.getString("tunnitGraafiin", "0");
         String tehdytAsiat = prefGet.getString("tehdytAsiat", "0");
         String kerrotutUnet = prefGet.getString("kerrotutUnet", "0");
@@ -54,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Yo> yoListaBack = gson.fromJson(json, ArrayList.class);
 
-        SharedPreferences prefPut = getSharedPreferences("mee", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefPut.edit();
-        editor.putString("yoLista", String.valueOf(yoListaBack));
-        editor.commit();
+
     }
 }

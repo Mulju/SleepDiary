@@ -9,9 +9,10 @@ public class User {
     private int asetusKieli;
     private int asetusFontSize;
     private int asetusDDMMYYYY;
-    YoData data = YoData.getInstance();
+    YoData data;
 
     private User() {
+        this.data = YoData.getInstance();
         this.asetusDarkMode = Constants.SYSTEM_DEFAULT;
         this.asetusKieli = Constants.LANG_FIN;
         this.asetusFontSize = Constants.FONT_SIZE_MEDIUM;
