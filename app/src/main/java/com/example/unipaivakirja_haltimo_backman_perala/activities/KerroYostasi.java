@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.Yo;
 
 public class KerroYostasi extends AppCompatActivity {
 
@@ -28,9 +29,15 @@ public class KerroYostasi extends AppCompatActivity {
 
     // tehdään onClick metodi "Lähetä"-nappulalle, joka lähettää tekstikenttiin syötetyt tiedot eteenpäin
     public void sendMessage(View view) {
-        SharedPreferences prefPut = getSharedPreferences("mee", Activity.MODE_PRIVATE);
+        SharedPreferences prefPut = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefPut.edit();
         String paivays = pvm.getText().toString();
+        String paivays2[] = paivays.split("\\.");
+
+        String paiva = paivays2[0];
+        String kuukausi = paivays2[1];
+        String vuosi = paivays2[2];
+
         String tunnitGraafiin = tunnit.getText().toString();
         String tehdytAsiat = mitaTeit.getText().toString();
         String kerrotutUnet = unet.getText().toString();
@@ -46,13 +53,17 @@ public class KerroYostasi extends AppCompatActivity {
             Toast.makeText(KerroYostasi.this, "Syötä validit arvot (tunnit 0-14)", Toast.LENGTH_SHORT).show();
 
         } else {
-            editor.putString("paivays", paivays);
+            editor.putString("paiva", paiva);
+            editor.putString("kuukausi", kuukausi);
+            editor.putString("vuosi", vuosi);
             editor.putString("tunnitGraafiin", tunnitGraafiin);
             editor.putString("tehdytAsiat", tehdytAsiat);
             editor.putString("kerrotutUnet", kerrotutUnet);
             editor.commit();
             Toast.makeText(KerroYostasi.this, "Data tallennettu", Toast.LENGTH_SHORT).show();
+            
         }
+
 
     }
 
