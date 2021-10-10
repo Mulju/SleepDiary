@@ -30,4 +30,9 @@ public class Yo {
     public String getEnnenNukkumaan() {
         return ennenNukkumaan;
     }
+
+    public String toString() {
+        return Integer.toString(paivamaara.getPaiva()) + "." + Integer.toString(paivamaara.getKuukausi()) + "." +
+                Integer.toString(paivamaara.getVuosi());
+    }
 }
