@@ -47,15 +47,17 @@ public class KerroYostasi extends AppCompatActivity {
         String tehdytAsiat = mitaTeit.getText().toString();
         String kerrotutUnet = unet.getText().toString();
 
-        // if-lause joka varmistaa ettei annetut tunnit ole absurdeja (käyttäjä voi syöttää arvot 0-14)
-        if (!tunnitGraafiin.equals("0") && !tunnitGraafiin.equals("1") && !tunnitGraafiin.equals("2") && !tunnitGraafiin.equals("3") &&
-                !tunnitGraafiin.equals("4") && !tunnitGraafiin.equals("5") && !tunnitGraafiin.equals("6") &&
-                !tunnitGraafiin.equals("7") && !tunnitGraafiin.equals("8") && !tunnitGraafiin.equals("9") &&
-                !tunnitGraafiin.equals("10") && !tunnitGraafiin.equals("11") && !tunnitGraafiin.equals("12") && !tunnitGraafiin.equals("13")
-                && !tunnitGraafiin.equals("14")) {
+        // luodaan int muuttujat pvm:stä ja tunneista if-lausetta varten
+        int tunnit2 = Integer.parseInt(tunnitGraafiin);
+        int paiva2 = Integer.parseInt(paiva);
+        int kk2 = Integer.parseInt(kuukausi);
+        int vuosi2 = Integer.parseInt(vuosi);
+
+        // if-lause joka varmistaa ettei annetut arvot ole absurdeja
+        if (tunnit2 > 14 || tunnit2 < 0 || vuosi2 < 2000 || paiva2 > 31 || paiva2 < 1 || kk2 > 12 || kk2 < 1) {
 
             // Tehdään toasti joka ilmoittaa että annetut tunnit ovat epäilyttäviä
-            Toast.makeText(KerroYostasi.this, "Syötä validit arvot (tunnit 0-14)", Toast.LENGTH_SHORT).show();
+            Toast.makeText(KerroYostasi.this, "Syötä validit arvot (tunnit 0-14, oikea pvm)", Toast.LENGTH_SHORT).show();
 
         } else {
             // Tehdään toasti joka ilmoittaa että data on tallenettu
