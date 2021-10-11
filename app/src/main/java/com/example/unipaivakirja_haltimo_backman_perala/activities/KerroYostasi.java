@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.Yo;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.YoData;
+import com.google.gson.Gson;
 
 public class KerroYostasi extends AppCompatActivity {
 
@@ -57,20 +58,18 @@ public class KerroYostasi extends AppCompatActivity {
             Toast.makeText(KerroYostasi.this, "Syötä validit arvot (tunnit 0-14)", Toast.LENGTH_SHORT).show();
 
         } else {
-            //tallennetaan muuttujat sharedpreferenceihin
-            editor.putString("paiva", paiva);
-            editor.putString("kuukausi", kuukausi);
-            editor.putString("vuosi", vuosi);
-            editor.putString("tunnitGraafiin", tunnitGraafiin);
-            editor.putString("tehdytAsiat", tehdytAsiat);
-            editor.putString("kerrotutUnet", kerrotutUnet);
-            editor.commit();
             // Tehdään toasti joka ilmoittaa että data on tallenettu
             Toast.makeText(KerroYostasi.this, "Data tallennettu", Toast.LENGTH_SHORT).show();
 
             // luodaan uusi yö olio annetuista tiedoista ja kirjataan se "Unesi"-näkymään
             YoData.getInstance().getYot().add(new Yo((Integer.parseInt(paiva)), Integer.parseInt(kuukausi), Integer.parseInt(vuosi),
                     Integer.parseInt(tunnitGraafiin), kerrotutUnet, tehdytAsiat));
+
+            // Tallennetaan päivitetty YoData lista shared prefiin
+            Gson gson = new Gson();
+            String json = gson.toJson(YoData.getInstance().getYot());
+            editor.putString("json", json);
+            editor.commit();
         }
 
 
