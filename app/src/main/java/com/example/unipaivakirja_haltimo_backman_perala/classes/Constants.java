@@ -1,7 +1,22 @@
+/*
+ * @(#)Asetukset 11.10.2021 versio 1.0
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
+
 package com.example.unipaivakirja_haltimo_backman_perala.classes;
 
+/**
+ * Tämä luokka on asetusten arvoja varten.
+ * Ne ovat vain vakioita, jotka näkyvät kaikkialla koodissa.
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class Constants {
-    // Nää luvut pitää vielä tarkistaa myöhemmin
     public static final int FONT_SIZE_SMALL = 10;
     public static final int FONT_SIZE_MEDIUM = 20;
     public static final int FONT_SIZE_LARGE = 30;
