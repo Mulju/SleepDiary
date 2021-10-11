@@ -1,3 +1,10 @@
+/*
+ * @(#)TiettyUni 11.10.2021 versio 1.0
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +15,20 @@ import android.widget.TextView;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 
+/*
+ * Tässä luokassa käyttäjä pystyy tarkastelemaan tietyn päivän nukuttuja tunetja, nähtyjä unia ja
+ * ennen nukkumaanmenoa tehtyjä asioita
+ *
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class TiettyUni extends AppCompatActivity {
+
+    /*
+     * onCreatessa määritellään textview id:t, asetetaan tekstikenttiin datat ja otetaan ne edellisestä intentistä
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

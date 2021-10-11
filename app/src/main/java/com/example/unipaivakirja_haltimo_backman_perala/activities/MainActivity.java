@@ -1,3 +1,10 @@
+/*
+ * @(#)MainActivity 11.10.2021 versio 1.0
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,11 +27,24 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Tämä luokka on sovelluksen aloitus ruutu.
+ * Käyttäjä painaa "jatka"-nappia, joka vie hänet valikkoon
+ * Tässä luokassa myös tallenetaan aiemmat datat
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class MainActivity extends AppCompatActivity {
-    // Määritellään nappi
+    // Määritellään nappi ja YoData
     Button jatka;
     YoData data = YoData.getInstance();
 
+
+    /*
+     * onCreatessa luodaan intent ja tehdään "jatka"-nappulalle listeneri, joka avaa uuden intentin
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //määritellään shared preference
         SharedPreferences prefGet = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
 
         // Haetaan YoData:n tallennettu json versio
