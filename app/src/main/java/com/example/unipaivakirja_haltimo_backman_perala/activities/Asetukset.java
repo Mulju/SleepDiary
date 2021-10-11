@@ -1,3 +1,11 @@
+/*
+ * @(#)Asetukset 11.10.2021 versio 1.0
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,48 +34,72 @@ import com.example.unipaivakirja_haltimo_backman_perala.classes.User;
 
 import java.util.ArrayList;
 
+/**
+ * Tämä luokka on asetus näkymää varten.
+ * Luokka sisältää toiminnallisuuden asetusten valintaan sekä tallennukseen.
+ * Ajanpuutteen vuoksi, emme ehtineet toteuttaa asetusten vaihtamista.
+ * Luokassa toteutettu myös popup toiminnallisuus asetus ikkunalle.
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class Asetukset extends AppCompatActivity {
-    // listanäkymä eri asetuksille
+    /** Listanäkymän view elementin alustus */
     private ListView lvAsetukset;
+    /** ArrayList eri asetusten listanäkymää varte */
     ArrayList<String> listaAsetukset;
 
-    // lista näkymät yksittäisen asetuksen valinnoille
+    /** ArrayList yksittäisen asetusten valintoja varten */
     ArrayList<String> listaAsetuksetDarkMode;
     ArrayList<String> listaAsetuksetKieli;
     ArrayList<String> listaAsetuksetFontti;
     ArrayList<String> listaAsetuksetDD;
+    /** Yksittäisen asetuksen listanäkymän view elementin alustus */
     private ListView lvDarkMode;
     private ListView lvKieli;
     private ListView lvFontti;
     private ListView lvDD;
+    /**
+     * ArrayAdapterit yksittäisen asetuksen listanäkymälle
+     * Määritelty tässä, koska alustamine on click listenerissä ei toimi
+     */
     ArrayAdapter arrayAdapterDarkMode;
     ArrayAdapter arrayAdapterKieli;
     ArrayAdapter arrayAdapterFontti;
     ArrayAdapter arrayAdapterDD;
 
-    // Shared pref tallennusta varten
+    /**
+     * SharedPreferences olion alustus tallennusta varten,
+     * ei käytetty ajan puutten vuoksi
+     */
     SharedPreferences prefPut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+         * Asetus luokan on create metodi.
+         * Kaikki toiminnallisuus on toteutettu tähän metodiin,
+         * onClickListenerin asettamisen vuoksi.
+         *  */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asetukset);
 
-        // Asetusten listaa varten alustettava array
+        // Asetusten listanäkymää varten luodun listan alustus
         listaAsetukset = new ArrayList<>();
         listaAsetukset.add("Dark Mode");
         listaAsetukset.add("Kieli");
         listaAsetukset.add("Fontin koko");
         listaAsetukset.add("Päiväyksen muotoilu");
-        // Haetaan asetusten listalle näkymällä view-objekti
+        // Haetaan listanäkymän view:n id
         lvAsetukset = findViewById(R.id.listViewAsetukset);
-        // Asetetaan listalle adapteri
+        // Asetetaan asetusten listanäkymälle adapteri
         lvAsetukset.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_lw_asetus,
                 listaAsetukset));
 
-
-        // Yksittäisen asetuksen listanäkymän arrayn alustus
+        // Yksittäistä asetusta varten luodun ArrayListin alustus
         // Perässä myös array adapterin luonti, sillä
         // sen luominen on clickin sisällä aiheutti errorin
         // Luominen ennen, ja sijoittaminen on clickissä sen sijaan toimi
@@ -75,7 +107,6 @@ public class Asetukset extends AppCompatActivity {
         listaAsetuksetDarkMode.add("System Default");
         listaAsetuksetDarkMode.add("Light Mode");
         listaAsetuksetDarkMode.add("Dark Mode");
-        // Miksei array adapterille tule <String>?
         arrayAdapterDarkMode =  new ArrayAdapter(this,
                 R.layout.layout_lw_asetus,
                 listaAsetuksetDarkMode);
@@ -103,7 +134,6 @@ public class Asetukset extends AppCompatActivity {
                 R.layout.layout_lw_asetus,
                 listaAsetuksetDD);
 
-
         // Alustetaan inflater
         // Inflaterillä luodaan popuppeja varten elementit
         final LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -111,27 +141,30 @@ public class Asetukset extends AppCompatActivity {
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
-        // Haetaan shared pref
+        // Haetaan shared preferences tallennusta varten
         prefPut = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
-        // Myös editori
+        // Haetaan myös editori
         SharedPreferences.Editor prefEditor = prefPut.edit();
 
-
-
-        // Asetetaan asetusten listviewille on click listener
+        // Kaikki perässä tuleva on ensimmäisen listanäkymän onItemClickListener.
+        // Tässä koodi listanäkymälle, missä käyttäjä valitsee,
+        // mitä asetusta hän haluaa muokata.
         lvAsetukset.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                // Käytetään hyväksi listan indeksiä i
-                // Tämän avulla voidaan käyttää switch-case rakennetta
-                // ja valita oikean asetuksen popup-ikkuna
+                /**
+                 * Käytetään hyväksi listan indeksiä i.
+                 * Tämän avulla voidaan käyttää switch-case rakennetta
+                 * ja valita oikean asetuksen.
+                 *
+                 * Tämä avaa kyseisen asetuksen popup-ikkunan.
+                 */
                 switch (i) {
 
-                    // Valinta Dark Mode
+                    // Käyttäjä valitsi valinnan Dark Mode
                     case 0:
                         // Luodaan layoutissa määritellyn mukainen popup ikkuna inflaterin avulla
-                        // Root toistaiseksi null
                         View popUpViewDarkMode = inflater.inflate(R.layout.popup_dark_mode, null);
                         PopupWindow pwDarkMode = new PopupWindow(popUpViewDarkMode, width, height, true);
 
@@ -147,25 +180,17 @@ public class Asetukset extends AppCompatActivity {
                         // Asetetaan sille adapteri
                         lvDarkMode.setAdapter(arrayAdapterDarkMode);
 
-                        // Popupin sisäinen listview missä valitaan asetuksen arvo
+                        // Asetetaan onItemClickListener popupin sisäiseen listanäkymään,
+                        // missä valitaan kyseisen asetuksen arvo.
                         lvDarkMode.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                                 // Switch lause sisältää asetuksen mahdolliset valinnat
-
-                                // Tänne kaikkiin asetuksiin vielä sisälle itse valinnan tallennus
-                                // kun nappia painetaan
-
-                                // Pitääkö siis poistaa Useriin muuttujan tilan tallennus switch casessa?
-                                // Ja siirtää se napin onclicklisteneriin?
-
-                                // Napin on clickiin alhaalla oleva kommentoitu dismiss!!
                                 switch (i) {
                                     case 0:
                                         // Tallennetaan käyttäjän tekemä valinta User-singletoniin
                                         User.getInstance().setAsetusDarkMode(Constants.SYSTEM_DEFAULT);
-                                        // Tallennetaan käyttäjän tekemä valinta share preferenceihin
+                                        // Tallennetaan käyttäjän tekemä valinta shared preferenceihin
                                         prefEditor.putInt("Dark Mode", Constants.SYSTEM_DEFAULT);
                                         prefEditor.commit();
                                         // Valinnan tekeminen list viewissä tappaa popup ikkunan
@@ -193,7 +218,7 @@ public class Asetukset extends AppCompatActivity {
                         });
                         break;
 
-                    // Valinta kieli
+                    // Valinta Kieli
                     case 1:
                         View popUpViewKieli = inflater.inflate(R.layout.popup_kieli, null);
                         PopupWindow pwKieli = new PopupWindow(popUpViewKieli, width, height, true);
@@ -235,7 +260,7 @@ public class Asetukset extends AppCompatActivity {
                         });
                         break;
 
-                    // Valinta fontti koko
+                    // Valinta Fontti koko
                     case 2:
                         View popUpViewFontti = inflater.inflate(R.layout.popup_fontti, null);
                         PopupWindow pwFontti = new PopupWindow(popUpViewFontti, width, height, true);
@@ -250,10 +275,6 @@ public class Asetukset extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 switch (i) {
                                     case 0:
-                                        // näin muutetaan yksittäisen napin fonttikoko
-                                        // ((Button) findViewById(R.id.buttonPopUpDD)).setTextSize();
-
-                                        // Lue styles and themes
                                         User.getInstance().setAsetusFontSize(Constants.FONT_SIZE_LARGE);
                                         prefEditor.putInt("Fontti", Constants.FONT_SIZE_LARGE);
                                         prefEditor.commit();
@@ -281,7 +302,7 @@ public class Asetukset extends AppCompatActivity {
                         });
                         break;
 
-                    // Valinta päiväyksen muotoilu
+                    // Valinta Päiväyksen muotoilu
                     case 3:
                         View popUpViewDD = inflater.inflate(R.layout.popup_dd, null);
                         PopupWindow pwDD = new PopupWindow(popUpViewDD, width, height, true);
