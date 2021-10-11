@@ -15,8 +15,10 @@ import com.google.gson.Gson;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.Constants;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     // Määritellään nappi
@@ -42,20 +44,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         SharedPreferences prefGet = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
-        String paiva = prefGet.getString("paiva", "0");
-        String kuukausi = prefGet.getString("kuukausi", "0");
-        String vuosi = prefGet.getString("vuosi", "0");
-        String tunnitGraafiin = prefGet.getString("tunnitGraafiin", "0");
-        String tehdytAsiat = prefGet.getString("tehdytAsiat", "0");
-        String kerrotutUnet = prefGet.getString("kerrotutUnet", "0");
-        
 
-        ArrayList<Yo> yoLista = new ArrayList<Yo>();
-        Gson gson = new Gson();
-        String json = gson.toJson(yoLista);
+        // Haetaan YoData:n tallennettu json versio
+        String json = prefGet.getString("json", "-1");
 
-        ArrayList<Yo> yoListaBack = gson.fromJson(json, ArrayList.class);
+        // Tallennetaan tämän istunnnon YoData listaan aiemman istunnon lista
+        // mikäli aiemmassa listassa oli jotakin
+        if (!json.equals("-1")) {
+            Gson gson = new Gson();
+            TypeToken<List<Yo>> token = new TypeToken<List<Yo>>() {};
+            List<Yo> tokenList = gson.fromJson(json,  token.getType());
 
+            ArrayList<Yo> yoListaBack = new ArrayList<>(tokenList.size());
+            yoListaBack.addAll(tokenList);
 
+            for (int i = 0; i < yoListaBack.size(); i++) {
+                YoData.getInstance().getYot().add(yoListaBack.get(i));
+            }
+        }
     }
 }
