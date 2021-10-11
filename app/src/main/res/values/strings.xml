@@ -16,4 +16,6 @@
     <string name="button_popup_tallennus">Tallenna</string>
     <string name="textView_tiettyUni3">Unet</string>
     <string name="textView_tiettyUni4">Ennen nukkumaan menoa tehdyt asiat</string>
+    <string name="graafi_otsikko">Viimeisen 7. yön nukutut tunnit</string>
+    <string name="graafi_huomio">HUOM! Graafi ei piirry oikein, ellei seitsemää yötä ole kirjattu!</string>
 </resources>
