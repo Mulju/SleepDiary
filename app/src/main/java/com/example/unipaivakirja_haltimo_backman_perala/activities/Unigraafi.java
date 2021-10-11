@@ -13,6 +13,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 public class Unigraafi extends AppCompatActivity {
 
     GraphView graphView;
+    LineGraphSeries<DataPoint> series;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,37 +23,27 @@ public class Unigraafi extends AppCompatActivity {
         // Etsitään graaphi elementti
         graphView = (GraphView) findViewById(R.id.graph);
 
-        // Graaphi ei piirry, ellei ole täytetty seitsemää yötä
-        if (YoData.getInstance().getYot().size() >= 7) {
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
-            graphView.addSeries(series);
+        series= new LineGraphSeries<DataPoint>(data());
+        graphView.addSeries(series);
+    }
+
+    public DataPoint[] data(){
+        int x_axis;
+        int offSet;
+        if (YoData.getInstance().getYot().size() > 20) {
+            x_axis = 20;
+            offSet = YoData.getInstance().getYot().size() - 20;
+        } else {
+            x_axis = YoData.getInstance().getYot().size();
+            offSet = 0;
         }
 
-
+        DataPoint[] dataPisteet = new DataPoint[x_axis];
+        for (int i = 0 + offSet; i < x_axis; i++){
+            DataPoint yksittäinenPiste = new DataPoint(i, YoData.getInstance().getYot().get(i).getNukututTunnit());
+            dataPisteet[i] = yksittäinenPiste;
+        }
+        return dataPisteet;
     }
-
-    private DataPoint[] getDataPoint(){
-        // Haetaan seitsemän viimeisimmän yön nukutut tunnit
-        int nukututTunnit1 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 1).getNukututTunnit();
-        int nukututTunnit2 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 2).getNukututTunnit();
-        int nukututTunnit3 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 3).getNukututTunnit();
-        int nukututTunnit4 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 4).getNukututTunnit();
-        int nukututTunnit5 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 5).getNukututTunnit();
-        int nukututTunnit6 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 6).getNukututTunnit();
-        int nukututTunnit7 = YoData.getInstance().getYot().get(YoData.getInstance().getYot().size() - 7).getNukututTunnit();
-
-        // Asetetaan data pisteet nukuttujen tuntien perusteella
-        DataPoint[] dp = new DataPoint[]{
-                new DataPoint(0, nukututTunnit1),
-                new DataPoint(1, nukututTunnit2),
-                new DataPoint(2, nukututTunnit3),
-                new DataPoint(3, nukututTunnit4),
-                new DataPoint(4, nukututTunnit5),
-                new DataPoint(5, nukututTunnit6),
-                new DataPoint(6, nukututTunnit7),
-        };
-        return (dp);
-    }
-
 }
 
