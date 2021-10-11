@@ -8,46 +8,48 @@
 
     <TextView
         android:id="@+id/textView_tiettyUni"
-        android:layout_width="348dp"
-        android:layout_height="332dp"
+        android:layout_width="355dp"
+        android:layout_height="336dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <TextView
         android:id="@+id/textView_tiettyUni2"
-        android:layout_width="333dp"
-        android:layout_height="166dp"
+        android:layout_width="355dp"
+        android:layout_height="183dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.371"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintVertical_bias="0.97" />
 
     <TextView
         android:id="@+id/textView_tiettyUni3"
-        android:layout_width="87dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="113dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
         android:text="@string/textView_tiettyUni3"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_tiettyUni4"
-        android:layout_width="270dp"
-        android:layout_height="42dp"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
         android:text="@string/textView_tiettyUni4"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_tiettyUni3"
-        app:layout_constraintVertical_bias="0.592" />
+        app:layout_constraintVertical_bias="0.614" />
 </androidx.constraintlayout.widget.ConstraintLayout>
