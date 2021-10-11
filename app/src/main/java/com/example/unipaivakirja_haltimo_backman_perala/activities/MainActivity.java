@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         String tunnitGraafiin = prefGet.getString("tunnitGraafiin", "0");
         String tehdytAsiat = prefGet.getString("tehdytAsiat", "0");
         String kerrotutUnet = prefGet.getString("kerrotutUnet", "0");
-        
 
         ArrayList<Yo> yoLista = new ArrayList<Yo>();
         Gson gson = new Gson();
         String json = gson.toJson(yoLista);
 
         ArrayList<Yo> yoListaBack = gson.fromJson(json, ArrayList.class);
+
 
 
     }
