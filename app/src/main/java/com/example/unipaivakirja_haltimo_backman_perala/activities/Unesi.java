@@ -17,24 +17,25 @@ import java.util.ArrayList;
 
 public class Unesi extends AppCompatActivity {
 
+    //määritellään listview ja extramessaget
     private ListView lvUnet;
     public static final String EXTRA_MESSAGE = "com.example.unipaivakirja.MESSAGE";
     public static final String EXTRA_MESSAGE2 = "com.example.unipaivakirja.MESSAGE2";
+    public static final String EXTRA_MESSAGE3 = "com.example.unipaivakirja.MESSAGE3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unesi);
-        // määritellään listview ja intent
+        // annetaan id listviewille, ja luodaan listview ja intent
         lvUnet = findViewById(R.id.listView_unet);
         Intent intent = new Intent(this, TiettyUni.class);
-
 
         lvUnet.setAdapter(new ArrayAdapter<Yo>(this,
                 R.layout.listview_layout,
                 YoData.getInstance().getYot()));
 
-
+        //tehdään OnItemClickListener joka vie käyttäjän uuteen näkymään joka sisältää annetut tiedot
         lvUnet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -44,6 +45,8 @@ public class Unesi extends AppCompatActivity {
                 intent.putExtra(EXTRA_MESSAGE, message);
                 String message2 = YoData.getInstance().getYot().get(i).getEnnenNukkumaan();
                 intent.putExtra(EXTRA_MESSAGE2, message2);
+                String message3 = Integer.toString(YoData.getInstance().getYot().get(i).getNukututTunnit());
+                intent.putExtra(EXTRA_MESSAGE3, message3);
 
                 startActivity(intent);
             }

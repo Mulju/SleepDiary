@@ -16,13 +16,14 @@ import com.google.gson.Gson;
 
 public class KerroYostasi extends AppCompatActivity {
 
+    //määritellään edittextkentät
     EditText tunnit, mitaTeit, unet, pvm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kerro_yostasi);
-    // määritellään edittext kentät
+    // annetaan edittextkentille id:t
         pvm = findViewById(R.id.editText_pvm);
         tunnit = findViewById(R.id.editText_nukututTunnit);
         mitaTeit = findViewById(R.id.editText_mitaTeitEnnen);
@@ -31,21 +32,21 @@ public class KerroYostasi extends AppCompatActivity {
 
     // tehdään onClick metodi "Lähetä"-nappulalle, joka lähettää tekstikenttiin syötetyt tiedot eteenpäin
     public void sendMessage(View view) {
-        //Tehdään sharedpreferences ja sen editori
+        //Tehdään sharedpreferences ja editori
         SharedPreferences prefPut = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefPut.edit();
+
         //määritellään muuttujat ottamalla arvot tekstikentistä
         String paivays = pvm.getText().toString();
-        //käytetään splitstringia jotta saamme päivämäärän päivät kuukaudet ja vuodet erikseen
-        String paivays2[] = paivays.split("\\.");
-
-        String paiva = paivays2[0];
-        String kuukausi = paivays2[1];
-        String vuosi = paivays2[2];
-
         String tunnitGraafiin = tunnit.getText().toString();
         String tehdytAsiat = mitaTeit.getText().toString();
         String kerrotutUnet = unet.getText().toString();
+
+        //käytetään splitstringia jotta saamme päivämäärän päivät kuukaudet ja vuodet erikseen
+        String paivays2[] = paivays.split("\\.");
+        String paiva = paivays2[0];
+        String kuukausi = paivays2[1];
+        String vuosi = paivays2[2];
 
         // luodaan int muuttujat pvm:stä ja tunneista if-lausetta varten
         int tunnit2 = Integer.parseInt(tunnitGraafiin);

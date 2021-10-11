@@ -16,4 +16,5 @@
     <string name="button_popup_tallennus">Tallenna</string>
     <string name="textView_tiettyUni3">Unet</string>
     <string name="textView_tiettyUni4">Ennen nukkumaan menoa tehdyt asiat</string>
+    <string name="textView_tiettyUni5">Nukutut tunnit:</string>
 </resources>

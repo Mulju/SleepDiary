@@ -15,15 +15,20 @@ public class TiettyUni extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tietty_uni);
 
+        //otetaan tiedot edellisestä intentistä
         Intent intent = getIntent();
         String message = intent.getStringExtra(Unesi.EXTRA_MESSAGE);
         String message2 = intent.getStringExtra(Unesi.EXTRA_MESSAGE2);
+        String message3 = intent.getStringExtra(Unesi.EXTRA_MESSAGE3);
 
-
+        // luodaan tekstikentät ja syötetään niihin halutut tiedot
         TextView textView = findViewById(R.id.textView_tiettyUni);
         textView.setText(message);
 
         TextView textView2 = findViewById(R.id.textView_tiettyUni2);
         textView2.setText(message2);
+
+        TextView textView3 = findViewById(R.id.textView_tiettyUni6);
+        textView3.setText(message3);
     }
 }
