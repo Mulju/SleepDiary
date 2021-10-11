@@ -1,3 +1,10 @@
+/*
+ * @(#)Unesi 11.10.2021 versio 1.0
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +22,15 @@ import com.example.unipaivakirja_haltimo_backman_perala.classes.YoData;
 
 import java.util.ArrayList;
 
+/*
+ * Tässä luokassa annetut unet näkyvät listviewna, josta voi katsoa tietyn yön unet, nukutut tunnit ja
+ * asiat joita käyttäjä teki ennen nukkumaan menoa, kun käyttäjä klikkaa jotain päivämäärää listassa.
+ *
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class Unesi extends AppCompatActivity {
 
     //määritellään listview ja extramessaget
@@ -23,6 +39,10 @@ public class Unesi extends AppCompatActivity {
     public static final String EXTRA_MESSAGE2 = "com.example.unipaivakirja.MESSAGE2";
     public static final String EXTRA_MESSAGE3 = "com.example.unipaivakirja.MESSAGE3";
 
+    /*
+     * onCreatessa hankitaan id listviewille, luodaan listview ja intent, OnItemClickListener ja
+     * arrayadapter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +51,12 @@ public class Unesi extends AppCompatActivity {
         lvUnet = findViewById(R.id.listView_unet);
         Intent intent = new Intent(this, TiettyUni.class);
 
+        //tehdään arrayadapter listviewille
         lvUnet.setAdapter(new ArrayAdapter<Yo>(this,
                 R.layout.listview_layout,
                 YoData.getInstance().getYot()));
 
-        //tehdään OnItemClickListener joka vie käyttäjän uuteen näkymään joka sisältää annetut tiedot
+        //tehdään OnItemClickListener joka vie käyttäjän uuteen näkymään joka sisältää aikaisemmin annetut tiedot
         lvUnet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

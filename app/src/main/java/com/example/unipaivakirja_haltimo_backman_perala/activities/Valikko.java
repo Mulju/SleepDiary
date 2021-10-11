@@ -1,3 +1,10 @@
+/*
+ * @(#)Valikko 11.10.2021 versio 1.0
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +16,23 @@ import android.widget.Button;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
 
+/*
+ * Tässä luokassa käyttäjä voi valita mitä hän haluaa tehdä.
+ * Käyttäjä voi siirtyä neljään eri näkymään (kerro yöstäsi, sinun unesi, unigraafi ja asetukset)
+ *
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class Valikko extends AppCompatActivity {
     // määritellään nappulat
     Button kerroyostasi, unesi, unigraafi, asetukset;
 
+
+    /*
+     * onCreatessa määritellään nappulat, luodaan intetit ja tehään nappuloille onClickListenerit
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

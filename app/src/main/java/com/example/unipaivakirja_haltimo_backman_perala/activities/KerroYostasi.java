@@ -1,3 +1,10 @@
+/*
+* @(#)KerroYostasi 11.10.2021 versio 1.0
+*
+* Copyright ryhmä Pikakassa
+*
+ */
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,23 +21,37 @@ import com.example.unipaivakirja_haltimo_backman_perala.classes.Yo;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.YoData;
 import com.google.gson.Gson;
 
+/*
+ * Tähän luokkaan syötetään jokaisen nukutun yön tiedot
+ * Tässä luokassa käyttäjä täyttää päivämäärän, nukutut tunnit, nähdyt unet ja asiat jotka hän teki ennen nukkumaan menoa
+ * Kun nämä on tehty painaa käyttäjä "Lähetä"-nappia joka tallentaa annetut arvot sharedpreferenceihin gsonina
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
+
 public class KerroYostasi extends AppCompatActivity {
 
     //määritellään edittextkentät
     EditText tunnit, mitaTeit, unet, pvm;
 
+    /*
+     * onCreate metodi hankkii edittextkentille id:t
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kerro_yostasi);
-    // annetaan edittextkentille id:t
+
         pvm = findViewById(R.id.editText_pvm);
         tunnit = findViewById(R.id.editText_nukututTunnit);
         mitaTeit = findViewById(R.id.editText_mitaTeitEnnen);
         unet = findViewById(R.id.editText_millaisiaUnia);
     }
 
-    // tehdään onClick metodi "Lähetä"-nappulalle, joka lähettää tekstikenttiin syötetyt tiedot eteenpäin
+    /*
+     * tehdään onClick metodi "Lähetä"-nappulalle, joka tallentaa tekstikenttiin syötetyt tiedot
+     */
     public void sendMessage(View view) {
         //Tehdään sharedpreferences ja editori
         SharedPreferences prefPut = getSharedPreferences("Unitallennus", Activity.MODE_PRIVATE);

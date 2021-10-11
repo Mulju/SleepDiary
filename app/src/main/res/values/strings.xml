@@ -17,5 +17,5 @@
     <string name="textView_tiettyUni3">Unet</string>
     <string name="textView_tiettyUni4">Ennen nukkumaan menoa tehdyt asiat</string>
     <string name="textView_tiettyUni5">Nukutut tunnit:</string>
-    <string name="graafi_otsikko">Viimeisen 20. yön nukutut tunnit</string>
+    <string name="graafi_otsikko">Viimeisen 20 yön nukutut tunnit</string>
 </resources>
