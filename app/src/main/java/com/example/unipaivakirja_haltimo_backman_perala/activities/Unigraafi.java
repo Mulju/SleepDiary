@@ -35,31 +35,21 @@ public class Unigraafi extends AppCompatActivity {
         setContentView(R.layout.activity_unigraafi);
 
         graphView = (GraphView) findViewById(R.id.graph);
-        series = new LineGraphSeries<>(getDataPoint());
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
         graphView.addSeries(series);
 
-        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter()
-        {
-            @Override
-            public String formatLabel(double value, boolean isValueX) {
-                if(isValueX){
-                    return sdf.format(new Date((long) value));
-                } else {
-                    return super.formatLabel(value, isValueX);
-                }
-            }
-        });
     }
-    private DataPoint[] getDataPoint() {
-        DataPoint[] dp = new DataPoint[]{};{
-        int count = 0;
-        while (data.getYot().size() > count) {
-            int nukututTunnit = data.getYot().get(count).getNukututTunnit();
-            new DataPoint(new Date().getTime(), nukututTunnit);
-            count++;
-        }
+    private DataPoint[] getDataPoint(){
+        DataPoint[] dp = new DataPoint[]{
+                new DataPoint(0, 3),
+                new DataPoint(1, 5),
+                new DataPoint(2, 4),
+                new DataPoint(3, 2),
+                new DataPoint(4, 3),
+                new DataPoint(5, 5),
         };
-        return dp;
+        return (dp);
     }
+
 }
 
