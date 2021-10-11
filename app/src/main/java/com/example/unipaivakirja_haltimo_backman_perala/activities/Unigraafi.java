@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 
 import com.example.unipaivakirja_haltimo_backman_perala.R;
+import com.example.unipaivakirja_haltimo_backman_perala.classes.Paivamaara;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.Yo;
 import com.example.unipaivakirja_haltimo_backman_perala.classes.YoData;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -25,6 +25,8 @@ public class Unigraafi extends AppCompatActivity {
     GraphView graphView;
     LineGraphSeries<DataPoint> series;
     SimpleDateFormat sdf = new SimpleDateFormat("d.M");
+    Paivamaara paivamaara;
+    Yo yo;
     YoData data = YoData.getInstance();
 
     @Override
@@ -49,19 +51,15 @@ public class Unigraafi extends AppCompatActivity {
         });
     }
     private DataPoint[] getDataPoint() {
-        DataPoint[] dp = new DataPoint[]
-                {
-                        new DataPoint(new Date().getTime(), 7),
-                        new DataPoint(new Date().getTime(), 8),
-                        new DataPoint(new Date().getTime(), 9),
-                        new DataPoint(new Date().getTime(), 6),
-                        new DataPoint(new Date().getTime(), 5),
-                        new DataPoint(new Date().getTime(), 6),
-                        new DataPoint(new Date().getTime(), 7),
-                        new DataPoint(new Date().getTime(), 8),
-                        new DataPoint(new Date().getTime(), 9),
-                        new DataPoint(new Date().getTime(), 10),
-                };
+        DataPoint[] dp = new DataPoint[]{};{
+        int count = 0;
+        while (data.getYot().size() > count) {
+            int nukututTunnit = data.getYot().get(count).getNukututTunnit();
+            new DataPoint(new Date().getTime(), nukututTunnit);
+            count++;
+        }
+        };
         return dp;
     }
 }
+
