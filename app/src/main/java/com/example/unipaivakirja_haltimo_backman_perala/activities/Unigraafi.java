@@ -1,3 +1,10 @@
+/*
+ * @(#)Unigraafi 11.10.2021
+ *
+ * Copyright ryhmä Pikakassa
+ *
+ */
+
 package com.example.unipaivakirja_haltimo_backman_perala.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +17,17 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class Unigraafi extends AppCompatActivity {
+/**
+ * Tämä luokka on graafin piirtämistä varten.
+ * Luokka sisältää graafin alustamisen ja graafin pisteiden hakemisen
+ * YoData -luokasta.
+ *
+ * @version 1.0 11.10.2021
+ * @author Samuli Haltimo, Sami Bäckman, Pyry Perälä
+ */
 
+public class Unigraafi extends AppCompatActivity {
+    // Määritetään graafi ja graafin pisteet
     GraphView graphView;
     LineGraphSeries<DataPoint> series;
 
@@ -20,13 +36,16 @@ public class Unigraafi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unigraafi);
 
-        // Etsitään graaphi elementti
+        // Etsitään graafi elementti
         graphView = (GraphView) findViewById(R.id.graph);
-
+        // Määritetään mitkä pisteet graafi piirtää
         series= new LineGraphSeries<DataPoint>(data());
+        // Lisätään pisteet graafiin
         graphView.addSeries(series);
     }
-
+    /*
+    *
+     */
     public DataPoint[] data(){
         int x_axis;
         int offSet;
