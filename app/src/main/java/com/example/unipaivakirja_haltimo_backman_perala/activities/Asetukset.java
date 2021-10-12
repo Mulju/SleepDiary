@@ -176,6 +176,8 @@ public class Asetukset extends AppCompatActivity {
                         pwDarkMode.showAtLocation(view, Gravity.CENTER, 0, 0);
 
                         // Haetaan listanäkymän view olio
+                        // Pitää muistaa kirjoittaa pop-up ikkunan nimi ensimmäiseksi komentoon,
+                        // jotta ohjelma osaa löytää view:n
                         lvDarkMode = popUpViewDarkMode.findViewById(R.id.lvDarkMode);
                         // Asetetaan sille adapteri
                         lvDarkMode.setAdapter(arrayAdapterDarkMode);
